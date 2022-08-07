@@ -32,14 +32,6 @@ class UserDatabase:
         self.session.add(new_user)
         self.session.commit()
 
-    def read_table(self):
-        users = self.session.query(User)
-        for user in users:
-            print(user.username)
-            print(user.mail)
-            print(user.created_at)
-            print(user.location)
-
     def return_table_as_df(self) -> pd.DataFrame:
         """
         Load the users-app table in a panda dataframe.
@@ -47,5 +39,12 @@ class UserDatabase:
         -------
         df: pd.Dataframe
         """
-        df = pd.read_sql_query('select * from "users_app"', con=self.db)
-        return df
+        df_users = pd.DataFrame(columns=['username', 'password', 'mail', 'created_at', 'location'])
+        users = self.session.query(User)
+        for count, user in enumerate(users):
+            df_users.loc[count, 'username'] = user.username
+            df_users.loc[count, 'password'] = user.password
+            df_users.loc[count, 'location'] = user.location
+            df_users.loc[count, 'created_at'] = user.created_at
+            df_users.loc[count, 'mail'] = user.mail
+        return df_users

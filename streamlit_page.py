@@ -1,11 +1,44 @@
 import streamlit as st
 from constants import HIDE_STREAMLIT_STYLE
+import sqlalchemy
+from sqlalchemy.ext.declarative import declarative_base
+from dotenv import load_dotenv
+import os
 
 
 class Page:
 
     def __init__(self):
         self.hide_streamlit_default_layout()
+        self.db = self.connect_to_db()
+
+    @staticmethod
+    @st.cache(allow_output_mutation=True)
+    def connect_to_db():
+        """
+        Connect to postgres database containing users credentials.
+
+        Returns
+        -------
+
+        """
+        load_dotenv()
+
+        db = sqlalchemy.create_engine(
+            sqlalchemy.engine.url.URL.create(
+                drivername='postgresql',
+                username=os.getenv('USERNAME'),
+                password=os.getenv('PASSWORD'),
+                host=os.getenv('HOST'),
+                port=os.getenv('PORT'),
+                database=os.getenv('DATABASE'),
+            ),
+            echo_pool=True,
+        )
+
+        base = declarative_base()
+        base.metadata.create_all(db)
+        return db
 
     @staticmethod
     def hide_streamlit_default_layout():
