@@ -1,7 +1,7 @@
 import streamlit as st
-from constants import HIDE_STREAMLIT_STYLE
-from google_sheet_connect import get_df_from_sheet
-from auth import check_password
+from src.constants import HIDE_STREAMLIT_STYLE
+from src.google_sheet_connect import get_df_from_sheet
+
 
 class Page:
 

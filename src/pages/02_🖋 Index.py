@@ -1,6 +1,5 @@
 import streamlit as st
-from streamlit_page import Page
-from constants import CHOICES_INDEX
+from src.streamlit_page import Page
 
 st.set_page_config(
     layout="wide",

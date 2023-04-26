@@ -1,7 +1,7 @@
 import streamlit as st
-from streamlit_page import Page
-from consumption import ConsumptionDataframe
-from frontend import plot_consumption, dic_name
+from src.streamlit_page import Page
+from src.consumption import ConsumptionDataframe
+from src.frontend import plot_consumption, dic_name
 
 st.set_page_config(
     layout="wide",

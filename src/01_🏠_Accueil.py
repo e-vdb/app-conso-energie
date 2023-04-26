@@ -1,6 +1,11 @@
+import sys
+import os
 import streamlit as st
 
-from streamlit_page import Page
+# Add app directory to Python path
+sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+
+from src.streamlit_page import Page
 from constants import DESCRIPTION
 from auth import check_password
 

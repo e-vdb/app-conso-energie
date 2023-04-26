@@ -1,0 +1,6 @@
+gspread
+invoke
+matplotlib
+pandas
+streamlit
+plotly
