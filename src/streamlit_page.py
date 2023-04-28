@@ -1,44 +1,36 @@
 import streamlit as st
-from constants import HIDE_STREAMLIT_STYLE
-import sqlalchemy
-from sqlalchemy.ext.declarative import declarative_base
-from dotenv import load_dotenv
-import os
+from src.constants import HIDE_STREAMLIT_STYLE
+from src.google_sheet_connect import get_df_from_sheet
 
 
 class Page:
 
     def __init__(self):
         self.hide_streamlit_default_layout()
-        self.db = self.connect_to_db()
+        self.db = get_df_from_sheet()
+        self.map_cols = {'elecday': 'Electricité Jour',
+                         'elecnight': 'Electricité Nuit',
+                         'gas': 'Gaz',
+                         'water': 'Eau',
+                         'rainwater': 'Eau de pluie',
+                         'elecday_consumption': 'Electricité jour (kWh)',
+                         'elecnight_consumption': 'Electricité nuit (kWh)',
+                         'gas_consumption': 'Gaz (m3)',
+                         'water_consumption': 'Eau (m3)',
+                         'rainwater_consumption': 'Eau de pluie (m3)',
+                         'Year_consumption': 'Année'
+                         }
 
-    @staticmethod
-    @st.cache(allow_output_mutation=True)
-    def connect_to_db():
-        """
-        Connect to postgres database containing users credentials.
+    def check_auth(self):
+        st.markdown("## 🚨 Vous n'êtes pas connecté.")
+        st.markdown("## 🚨 Veuillez vous connecter.")
+        st.stop()
 
-        Returns
-        -------
-
-        """
-        load_dotenv()
-
-        db = sqlalchemy.create_engine(
-            sqlalchemy.engine.url.URL.create(
-                drivername='postgresql',
-                username=os.getenv('USERNAME'),
-                password=os.getenv('PASSWORD'),
-                host=os.getenv('HOST'),
-                port=os.getenv('PORT'),
-                database=os.getenv('DATABASE'),
-            ),
-            echo_pool=True,
-        )
-
-        base = declarative_base()
-        base.metadata.create_all(db)
-        return db
+    def check_empty_db(self):
+        if self.db.empty:
+            st.markdown("## 🚨 Aucune donnée n'a été trouvée dans la base de données.")
+            st.markdown("## 🚨 Veuillez remplir votre base de données.")
+            st.stop()
 
     @staticmethod
     def hide_streamlit_default_layout():

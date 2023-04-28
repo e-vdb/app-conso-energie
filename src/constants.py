@@ -41,3 +41,17 @@ DESCRIPTION = """
               - Comparer vos consomations mensuelles avec celles des années précédentes
 
               """
+
+MAP_COLS = {
+    'elecday': 'Electricité Jour',
+    'elecnight': 'Electricité Nuit',
+     'gas': 'Gaz',
+     'water': 'Eau',
+     'rainwater': 'Eau de pluie',
+     'elecday_consumption': 'Electricité jour (kWh)',
+      'elecnight_consumption': 'Electricité nuit (kWh)',
+      'gas_consumption': 'Gaz (m3)',
+      'water_consumption': 'Eau (m3)',
+    'rainwater_consumption': 'Eau de pluie (m3)',
+    'year_consumption': 'Année'
+                         }
