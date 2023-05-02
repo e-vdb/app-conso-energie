@@ -20,8 +20,11 @@ class Home(Page):
     def authenticate_user(self):
         if check_password():
             st.session_state["authenticated"] = True
+            st.write(f"Welcome back {st.session_state['username']}")
+            st.session_state["user"] = st.session_state['username']
             st.success("🔓 Authentification réussie !")
             self.show_home()
+            self.connect_to_gsheet()
 
     @staticmethod
     def show_home():

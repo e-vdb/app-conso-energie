@@ -1,13 +1,14 @@
 import streamlit as st
 from src.constants import HIDE_STREAMLIT_STYLE
-from src.google_sheet_connect import get_df_from_sheet
+from src.google_sheet_connect import IndexSheet
 
 
 class Page:
 
     def __init__(self):
         self.hide_streamlit_default_layout()
-        self.db = get_df_from_sheet()
+        self.sheet = None
+        self.db = None
         self.map_cols = {'elecday': 'Electricité Jour',
                          'elecnight': 'Electricité Nuit',
                          'gas': 'Gaz',
@@ -25,6 +26,14 @@ class Page:
         st.markdown("## 🚨 Vous n'êtes pas connecté.")
         st.markdown("## 🚨 Veuillez vous connecter.")
         st.stop()
+
+    def connect_to_gsheet(self):
+        try:
+            self.sheet = IndexSheet(sheet_name=st.session_state["user"])
+            self.db = self.sheet.get_content_as_df()
+        except Exception as e:
+            st.error("No sheet found")
+            st.stop()
 
     def check_empty_db(self):
         if self.db.empty:

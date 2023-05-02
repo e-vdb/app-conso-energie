@@ -20,7 +20,9 @@ class Consumption(Page):
     )
 
     def __init__(self):
+
         super(Consumption, self).__init__()
+        self.connect_to_gsheet()
         self.check_empty_db()
         self.consumption = ConsumptionDataframe(self.db)
         self.consumption.evaluate_consumption()
