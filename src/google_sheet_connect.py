@@ -1,4 +1,4 @@
-#import library
+
 import gspread
 import pandas as pd
 from google.oauth2.service_account import Credentials
@@ -13,21 +13,28 @@ credentials = Credentials.from_service_account_info(
     scopes=SCOPES,
 )
 
+SHEET_TITLE = st.secrets["gsheets"]["sheet_title"]
 
-#gc = gspread.service_account(filename="creds.json")
-#connect to the service account
 gc = gspread.authorize(credentials)
-#connect to your sheet (between "" = the name of your G Sheet, keep it short)
-sh = gc.open("2023_01_01_emeline_pressoir")
+sh = gc.open(SHEET_TITLE)
 
 
-def get_df_from_sheet():
-    # Read a worksheet and create it if it doesn't exist
-    worksheet_title = "2022_11_16_emeline_pressoir"
-    #worksheet_title = "Feuille 1"
-    try:
-        worksheet = sh.worksheet(worksheet_title)
-        return pd.DataFrame(worksheet.get_all_records())
-    except gspread.WorksheetNotFound:
-        print("Worksheet not found")
-        return None
+class IndexSheet:
+
+    def __init__(self, sheet_name):
+        self.sheet_name = sheet_name
+        try:
+            self.sheet = sh.worksheet(sheet_name)
+        except gspread.WorksheetNotFound:
+            print("Worksheet not found")
+            raise Exception("Worksheet not found")
+
+    def get_content_as_df(self):
+        return pd.DataFrame(self.sheet.get_all_records())
+
+    def add_row_to_sheet(self, body: list):
+        self.sheet.append_row(body)
+
+    def get_last_row(self):
+        return self.sheet.get_all_records()[-1]
+
