@@ -1,0 +1,10 @@
+black
+gspread
+invoke
+isort
+matplotlib
+pandas
+plotly
+pre-commit
+pylint
+streamlit

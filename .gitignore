@@ -130,3 +130,5 @@ dmypy.json
 
 #Secrets
 .env
+secrets.toml
+old_creds.json
