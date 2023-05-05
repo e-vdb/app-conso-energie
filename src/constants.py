@@ -8,7 +8,7 @@ HIDE_STREAMLIT_STYLE = """
                                 visibility: hidden;
                                 }
                         footer:after {
-                        content:"Contact: "; 
+                        content:"Contact: ";
                         visibility: visible;
                         display: block;
                         position: relative;
@@ -20,41 +20,41 @@ HIDE_STREAMLIT_STYLE = """
                         """
 
 CHOICES_INDEX = (
-           "👁️ Visualiser vos index",
-           "🖋️ Remplir vos index",
-           "🖍️ Corriger vos relevés d'index",
-           )
+    "👁️ Visualiser vos index",
+    "🖋️ Remplir vos index",
+    "🖍️ Corriger vos relevés d'index",
+)
 
 
 CHOICES_CONSOMMATION = (
-           "📊 Consommation totale",
-           "📊 Consommation annuelle",
-           "🟩 Comparaison consommation 🟥",
-           )
+    "📊 Consommation totale",
+    "📊 Consommation annuelle",
+    "🟩 Comparaison consommation 🟥",
+)
 
 DESCRIPTION = """
-              ## Fonctionnalités
+    # Fonctionnalités
 
-              - Visualiser/remplir vos index de consommation
-              - Calculer votre consommation totale
-              - Visualiser votre consommation annuelle/ mensuelle
-              - Comparer vos consomations mensuelles avec celles des années précédentes
+    - Visualiser/remplir vos index de consommation
+    - Calculer votre consommation totale
+    - Visualiser votre consommation annuelle/ mensuelle
+    - Comparer vos consomations mensuelles avec celles des années précédentes
 
-              """
+            """
 
 MAP_COLS = {
-    'elecday': 'Electricité Jour',
-    'elecnight': 'Electricité Nuit',
-     'gas': 'Gaz',
-     'water': 'Eau',
-     'rainwater': 'Eau de pluie',
-     'elecday_consumption': 'Electricité jour (kWh)',
-      'elecnight_consumption': 'Electricité nuit (kWh)',
-      'gas_consumption': 'Gaz (m3)',
-      'water_consumption': 'Eau (m3)',
-    'rainwater_consumption': 'Eau de pluie (m3)',
-    'year_consumption': 'Année'
-                         }
+    "elecday": "Electricité Jour",
+    "elecnight": "Electricité Nuit",
+    "gas": "Gaz",
+    "water": "Eau",
+    "rainwater": "Eau de pluie",
+    "elecday_consumption": "Electricité jour (kWh)",
+    "elecnight_consumption": "Electricité nuit (kWh)",
+    "gas_consumption": "Gaz (m3)",
+    "water_consumption": "Eau (m3)",
+    "rainwater_consumption": "Eau de pluie (m3)",
+    "year_consumption": "Année",
+}
 
 FRENCH_MONTHS = {
     1: "Janvier",
@@ -68,5 +68,5 @@ FRENCH_MONTHS = {
     9: "Septembre",
     10: "Octobre",
     11: "Novembre",
-    12: "Décembre"
+    12: "Décembre",
 }
