@@ -1,12 +1,18 @@
+"""
+Authentication module.
+
+Source:
+https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso
+"""
+
 import streamlit as st
 
 
 def check_password():
-    """Returns `True` if the user had a correct password."""
+    """Return `True` if the user had a correct password."""
 
     def password_entered():
-        """Checks whether a password entered by the user is correct."""
-
+        """Check whether a password entered by the user is correct."""
         if (
             st.session_state["username"] in st.secrets["passwords"]
             and st.session_state["password"]
@@ -19,20 +25,30 @@ def check_password():
 
     if "password_correct" not in st.session_state:
         # First run, show inputs for username + password.
-        st.sidebar.text_input("Username", on_change=password_entered, key="username")
         st.sidebar.text_input(
-            "Password", type="password", on_change=password_entered, key="password"
+            "Username", on_change=password_entered, key="username"
+        )
+        st.sidebar.text_input(
+            "Password",
+            type="password",
+            on_change=password_entered,
+            key="password",
         )
         return False
-    elif not st.session_state["password_correct"]:
+    if not st.session_state["password_correct"]:
         # Password not correct, show input + error.
-        st.sidebar.text_input("Username", on_change=password_entered, key="username")
         st.sidebar.text_input(
-            "Password", type="password", on_change=password_entered, key="password"
+            "Username", on_change=password_entered, key="username"
+        )
+        st.sidebar.text_input(
+            "Password",
+            type="password",
+            on_change=password_entered,
+            key="password",
         )
         st.sidebar.error("😕 User not known or password incorrect")
         return False
-    else:
-        # Password correct.
 
-        return True
+    # Password correct.
+
+    return True
