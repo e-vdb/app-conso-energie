@@ -56,3 +56,8 @@ class IndexSheet:
     def get_last_row(self) -> dict:
         """Return the last row of the sheet."""
         return self.sheet.get_all_records()[-1]
+
+    def update_row_in_sheet(self, row: int, body: list):
+        """Update a row in the sheet."""
+        for col, value in enumerate(body):
+            self.sheet.update_cell(row, col + 1, value)
