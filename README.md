@@ -12,18 +12,18 @@ Still in development...
 
 ## 📋 Tasks list
 
-- [ ] Store and load data from private google sheet
-- [ ] Create the streamlit app with following pages
-  - [ ] Home page
-  - [ ] Index page
-  - [ ] Consumption page
-- [ ] Content of the index page
-  - [ ] See the index
-  - [ ] Add a new entry
-  - [ ] Edit an entry
-- [ ] Content of the consumption page
-  - [ ] Total consumption (table and charts)
-  - [ ] Annual consumption (table and charts)
-  - [ ] Compare consumption with previous years
+- [x] Store and load data from private google sheet
+- [x] Create the streamlit app with following pages
+  - [x] Home page
+  - [x] Index page
+  - [x] Consumption page
+- [x] Content of the index page
+  - [x] See the index
+  - [x] Add a new entry
+  - [x] Edit an entry
+- [x] Content of the consumption page
+  - [x] Total consumption (table and charts)
+  - [x] Annual consumption (table and charts)
+  - [x] Compare consumption with previous years
 - [ ] Deploy the app on Streamlit Cloud
 - [ ] Add a reminder to update the index (email) with a cron job

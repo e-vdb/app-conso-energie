@@ -73,24 +73,38 @@ class Index(Page):
                 "Vous avez déjà rempli vos index pour ce mois-ci. "
                 "Rendez-vous au début du mois prochain."
             )
-            st.stop()
+            # st.stop()
         else:
             st.info("Remplissez vos index pour ce mois-ci.")
 
-        index_date = datetime(
-            year=datetime.now().year, month=datetime.now().month, day=1
-        )
-        index_date = datetime.strftime(index_date, "%Y-%m-%d")
-        indexes = list(self.query_infos().values())
-        content = [index_date, *indexes]
+            index_date = datetime(
+                year=datetime.now().year, month=datetime.now().month, day=1
+            )
+            index_date = datetime.strftime(index_date, "%Y-%m-%d")
+            indexes = list(self.query_infos().values())
+            content = [index_date, *indexes]
 
-        if st.button("Ajouter"):
-            self.sheet.add_row_to_sheet(list(content))
-            st.success("Index ajouté !")
+            if st.button("Ajouter"):
+                self.sheet.add_row_to_sheet(list(content))
+                st.success("Index ajouté !")
 
     def correct_index(self):
         """Allow the user to correct the index."""
         self.check_empty_db()
+        selected_date = st.selectbox(
+            label="Choisissez la ligne à corriger", options=self.db["date"]
+        )
+        st.info("Remplissez les index corrects.")
+        row_to_correct = self.db[self.db["date"] == selected_date]
+        st.table(row_to_correct)
+
+        new_values = list(self.query_infos().values())
+        new_content = [selected_date, *new_values]
+
+        if st.button("Corriger"):
+            index_to_correct = row_to_correct.index[0]
+            self.sheet.update_row_in_sheet(index_to_correct + 2, new_content)
+            st.success("Index corrigés !")
 
 
 app = Index()
