@@ -3,7 +3,7 @@ name: Python application to send monthly reminder email
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 19 * * *' # Run every day at 19:00 UTC
+    - cron: '30 19 * * *' # Run every day at 19:00 UTC
 
 jobs:
   build_run:
