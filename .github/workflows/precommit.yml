@@ -5,8 +5,6 @@ on:
   push:
     branches: [main, dev]
 
-description: run pre-commit
-
 jobs:
   build:
     runs-on: ubuntu-latest
