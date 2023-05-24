@@ -1,10 +1,15 @@
 name: pre-commit
+
+on: [push]
+
 description: run pre-commit
+
 inputs:
   extra_args:
     description: options to pass to pre-commit run
     required: false
     default: '--all-files'
+
 runs:
   using: composite
   steps:
