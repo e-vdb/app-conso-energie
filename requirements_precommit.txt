@@ -1,0 +1,5 @@
+black
+isort
+pandas
+pre-commit
+pylint
