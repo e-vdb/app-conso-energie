@@ -53,15 +53,28 @@ class Index(Page):
         self.check_empty_db()
         st.table(self.db)
 
-    def query_infos(self):
+    def query_infos(self) -> dict:
         """Allow the user to fill the index."""
-        row = {}
-        row["ELECDAY"] = st.number_input(self.map_cols["elecday"])
-        row["ELECNIGHT"] = st.number_input(self.map_cols["elecnight"])
-        row["GAS"] = st.number_input(self.map_cols["gas"])
-        row["WATER"] = st.number_input(self.map_cols["water"])
-        row["RAINWATER"] = st.number_input(self.map_cols["rainwater"])
-        return row
+        return {
+            "ELECDAY": st.number_input(
+                label=self.map_cols["elecday"], key="number_input_elecday"
+            ),
+            "ELECNIGHT": st.number_input(
+                label=self.map_cols["elecnight"], key="number_input_elecnight"
+            ),
+            "GAS": st.number_input(
+                label=self.map_cols["gas"],
+                key="number_input_gas",
+            ),
+            "WATER": st.number_input(
+                label=self.map_cols["water"],
+                key="number_input_water",
+            ),
+            "RAINWATER": st.number_input(
+                label=self.map_cols["rainwater"],
+                key="number_input_rainwater",
+            ),
+        }
 
     def fill_index(self):
         """Ask the user to fill the index."""
