@@ -2,6 +2,7 @@ black
 gspread
 invoke
 isort
+mako
 matplotlib
 pandas
 plotly
