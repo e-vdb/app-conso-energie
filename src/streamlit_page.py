@@ -1,8 +1,12 @@
 """Parent class for all the pages of the app."""
 
-import streamlit as st
+from os.path import dirname, join
+from pathlib import Path
 
-from src.constants import HIDE_STREAMLIT_STYLE
+import streamlit as st
+from mako.template import Template
+
+from src import __app_name__, __last_update__, __version__
 from src.exceptions import WorksheetError
 from src.google_sheet_connect import IndexSheet
 
@@ -51,16 +55,26 @@ class Page:
             st.error("No sheet found")
             st.stop()
 
-    def check_empty_db(self):
+    def check_empty_db(self, stop: bool = True):
         """Check if the database is empty."""
         if self.db.empty:
             st.markdown(
                 "## 🚨 Aucune donnée n'a été trouvée dans la base de données."
             )
             st.markdown("## 🚨 Veuillez remplir votre base de données.")
-            st.stop()
+            if stop:
+                st.stop()
 
     @staticmethod
     def hide_streamlit_default_layout():
         """Hide the default Streamlit menu."""
-        st.markdown(HIDE_STREAMLIT_STYLE, unsafe_allow_html=True)
+        html_content = Path(
+            join(Path(dirname(__file__)).parent, "custom_streamlit_style.html")
+        ).read_text(encoding="utf8")
+        t = Template(text=html_content)
+        custom_style = t.render(
+            app_name=__app_name__,
+            version=__version__,
+            last_update=__last_update__,
+        )
+        st.markdown(custom_style, unsafe_allow_html=True)

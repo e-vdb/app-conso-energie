@@ -1,24 +1,6 @@
 """Module with constant variables."""
 
 
-HIDE_STREAMLIT_STYLE = """
-                        <style>
-                        #MainMenu {visibility: hidden;}
-                        footer {
-                                visibility: hidden;
-                                }
-                        footer:after {
-                        content:"Contact: ";
-                        visibility: visible;
-                        display: block;
-                        position: relative;
-                        padding: 5px;
-                        top: 2px;
-                        color: #f02626;
-                                    }
-                        </style>
-                        """
-
 CHOICES_INDEX = (
     "👁️ Visualiser vos index",
     "🖋️ Remplir vos index",
