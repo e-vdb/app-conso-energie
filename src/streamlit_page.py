@@ -55,14 +55,15 @@ class Page:
             st.error("No sheet found")
             st.stop()
 
-    def check_empty_db(self):
+    def check_empty_db(self, stop: bool = True):
         """Check if the database is empty."""
         if self.db.empty:
             st.markdown(
                 "## 🚨 Aucune donnée n'a été trouvée dans la base de données."
             )
             st.markdown("## 🚨 Veuillez remplir votre base de données.")
-            st.stop()
+            if stop:
+                st.stop()
 
     @staticmethod
     def hide_streamlit_default_layout():
